@@ -1,5 +1,7 @@
 ## webpack配置相关知识
 
+webpack模块化打包工具。
+
 entry, output ,loader, plugin
 entry: 入口起点
 output: 输出配置
@@ -7,7 +9,14 @@ loader: webpack只能识别js， 其它文件需要相应的loader
 plugin：扩展功能
 
 ## 安装
-需要安装webpack和webpack-cli
+可以全局安装或者项目下安装，推荐在项目下安装
+需要node环境，然后创建项目，创建package.json,安装webpack, webpack-cli。
+提升webpack打包速度： 1. 新的node版本， 2. 新的webpack版本
+
+使用配置文件
+执行webpack,默认找项目目录下webpack.config.js。也可以手动指定配置文件
+--config指定配置文件
+
 
 ## webpack-dev-server构建开发服务器
 
@@ -38,7 +47,7 @@ file-loader,html-withimage-loader, url-loader限制图片大小，选择使用ba
 https://babel.docschina.org/setup#installation
 webpack默认不会转换es6到es5，需要使用babel
 安装babel
-npm install --save-dev babel-loader @babel/core
+
 配置rule
 配置.babelrc
 安装@babel/preset-env进行语法转换
@@ -108,7 +117,6 @@ watch 监控文件，实时打包， webpack-dev-server不会生成打包文件
 
 每次打包的时候清空上次内容
 
-### copy-webpack-plugin
 
 ### bannerplugin
 内置版权插件
