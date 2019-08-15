@@ -9,14 +9,18 @@ loader: webpack只能识别js， 其它文件需要相应的loader
 plugin：扩展功能
 
 ## 安装
-可以全局安装或者项目下安装，推荐在项目下安装
-需要node环境，然后创建项目，创建package.json,安装webpack, webpack-cli。
-提升webpack打包速度： 1. 新的node版本， 2. 新的webpack版本
+1. webpack需要node环境，需要先安装node
+2. 全局安装 `npm i webpack webpack-cli -g `(不推荐)
+3. 项目安装 项目目录下执行 `npm i webpack webpack-cli -D`
 
-使用配置文件
-执行webpack,默认找项目目录下webpack.config.js。也可以手动指定配置文件
---config指定配置文件
+webpack打包速度与node和webpack版本有关，因此要保持版本更新。
 
+##### 配置文件
+
+1. webpack默认寻找目录下webpack.config.js。也可以通过--config来指定配置文件
+2. 配置npm script通过npm启动webpack
+
+[demo](./01_start)
 
 ## webpack-dev-server构建开发服务器
 
