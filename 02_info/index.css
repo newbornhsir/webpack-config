@@ -2,7 +2,7 @@ body {
   background: red;
   transition: all 3s;
 }
-.logo {
-  width: 100px;
-  height: 100px;
+img {
+  width: 500px;
+  height: 500px;
 }
