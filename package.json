@@ -3,12 +3,15 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "sideEffects": false,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "demo1": "webpack-dev-server --config ./demo1/webpack.config.js",
     "demo2": "webpack --config ./demo2/webpack.config.js",
     "dev:01": "webpack --config ./01_start/webpack.config.js",
-    "dev:02": "webpack-dev-server --open --config ./02_info/webpack.config.js"
+    "dev:02": "webpack-dev-server --open --config ./02_info/webpack.config.js",
+    "dev:03": "webpack --config ./03_improve/webpack.dev.js",
+    "build:03": "webpack --config ./03_improve/webpack.prod.js"
   },
   "repository": {
     "type": "git",
@@ -43,7 +46,8 @@
     "webpack": "^4.39.1",
     "webpack-bundle-analyzer": "^3.4.1",
     "webpack-cli": "^3.3.6",
-    "webpack-dev-server": "^3.8.0"
+    "webpack-dev-server": "^3.8.0",
+    "webpack-merge": "^4.2.1"
   },
   "browserslist": [
     "defaults",

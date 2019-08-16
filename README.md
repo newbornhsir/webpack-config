@@ -22,6 +22,7 @@ webpack打包速度与node和webpack版本有关，因此要保持版本更新�
 [demo](./01_start)
 
 ## 3.配置
+[核心相关基础配置](./02_info)
 学习配置webpack需要了解四个重要的概念：
 - entry
 - output
@@ -55,7 +56,12 @@ es6语法并不能在所以的浏览器上运行。
 2. 配置loader
 3. npm install @babel/preset-env --save-dev
 4. 配置presets
-5. npm install @babel/plugin-transform-runtime -D 为低版本浏览器补充新式语法的支持
+5. npm install @babel/plugin-transform-runtime -D 为低版本浏览器补充新式语法的支持[官方介绍](https://babeljs.io/docs/en/babel-plugin-transform-runtime#docsNav)
+
+#### 3.3.4 js语法校验
+- `npm i eslint eslint-loader --save-dev`
+- 配置loader
+- 创建eslint配置文件.eslintrc.json,配置验证规则
 
 
 ### 3.4 plugin
@@ -87,29 +93,28 @@ plugin即插件，可以在webpack运行到某个时刻的时候，自动的完�
 `npm install --save-dev webpack-dev-server`
 也可以通过webpack-dev-middleware配合express实现webpack-dev-server
 
+## 4. 进阶
+### 4.1 Tree Shaking
+webpack默认会将所有的文件打包，然而模块中的某些东西并没有用到，所有并不希望将没用到的部分打包进来，这时候就需要Tree Shaking。
+注意：
 
+1. 只支持es module引入，即使用import方式引入， 因为es module是静态引入。
+2. 配置优化项
+```
+optimization: {
+    // 配置Tree Shaking
+    usedExports: true
+  },
+```
+3. 配置package.json
+配置不需要使用tree shaking方式处理的包
+```
+"sideEffects": []/false,
+```
+4. 在开发环境中并不会将为引用的部分去除掉，而只是做了一些提示，只有在生产环境下才会去除掉
 
-### es6转es5
+### 4.2开发模式和生产模式
 
-webpack默认不会转换es6到es5，需要使用babel
-安装babel
-
-配置rule
-配置.babelrc
-安装@babel/preset-env进行语法转换
-npm install @babel/preset-env --save-dev
-{
-  "presets": ["@babel/preset-env"]
-}
-
-@babel/plugin-transform-runtime
-
-https://babeljs.io/docs/en/babel-plugin-transform-runtime#docsNav
-
-js 语法校验
-eslint eslint-loader
-
-.eslintrc.json
 
 
 ### 暴露全局变量
