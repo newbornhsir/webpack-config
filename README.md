@@ -115,53 +115,43 @@ optimization: {
 
 ### 4.2开发模式和生产模式
 
+webpack通过mode来区分开发和生产环境。通过webpack-merge可以将配置文件分离出来。[示例](./03_improve)
+
+2.通过环境变量参数，来合并不同配置
+
+### 4.3 代码分割
+
+将所有资源打包到到单文件的缺点：
+1. 打包文件过大
+2. 代码发生变化，重新加载时间长
+3. 使用第三方类库和公共模块的时候，代码变动少，不需要每次都重新打包
 
 
-### 暴露全局变量
+webpack默认支持对动态导入的异步模块进行代码分割，需要安装@babel/plugin-syntax-dynamic-import使支持动态导入，注释的webpackChunkName指定分离出文件的保存文件名称。通过动态导入，可以实现按需加载和懒加载。
 
-全局loader
-pre loader
-normal loader
-内联loader
-后置loader
+对于同步模块，需要使用配置项中优化项中的splitChunks进行配置。
 
-1. 使用loader expose-loader
-或者 webpack配置loader
+[示例](./03_improve)
 
-2. webpack配置
+### 4.4 打包分析
+webpack提供插件，可以对打包结果进行分析和优化，官方网站有推荐的分析插件
+### 4.5 预加载
 
-在每个模块中都注入$
-new webpack.ProvidePlugin({
-  $: 'jquery'
-})
+webpack支持预加载，通过/* webpackPrefetch: true */可以在核心代码加载完成之后预加载。
 
-### 打包文件分类
+webpackpreload, 和核心代码一起加载。
+### 4.6 浏览器缓存与contenthash, runtimeChunk: {name: 'runtime}
 
-output
+runtimeChunk抽离出mainfest文件，
+### 4.7 shimming
+垫片，页面注入第三方库或者导出一个全局变量：
 
+- providePlugin, 页面注入模块
 
-### 多页
+- import-loader导出全局变量，挂载到window
 
-多入口
-
-多出口[name]
-
-多模版
-
-多次调用html-webpack-plugin, chunks: [name1, name2]
-
-
-### WATCH
-watch 监控文件，实时打包， webpack-dev-server不会生成打包文件
-
-
-### clean-webpack-plugin
-
-每次打包的时候清空上次内容
-
-
-### bannerplugin
-内置版权插件
+### pwa
+页面访问过后，离线状态下会显示缓存的东西。webpack存在这样的插件
 
 ### 跨域问题
 proxy
@@ -224,16 +214,3 @@ optimization: {
     }
   }
 }
-
-###  懒加载
-
-import()
-
-### 热更新
-
-hot true
-
-HotModuleReplacementPlugin 热更新插件
-NamedModulesPlugin 打印路径
-
-### tapable
