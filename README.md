@@ -118,6 +118,25 @@ optimization: {
 webpack通过mode来区分开发和生产环境。通过webpack-merge可以将配置文件分离出来。[示例](./03_improve)
 
 2.通过环境变量参数，来合并不同配置
+npm script中指定: eg `webpack --env.NODE_ENV=local --env.production --progress`
+
+在配置文件中接收传递的环境变量参数
+
+```
+module.exports = env => {
+  // Use env.<YOUR VARIABLE> here:
+  console.log('NODE_ENV: ', env.NODE_ENV) // 'local'
+  console.log('Production: ', env.production) // true
+
+  return {
+    entry: './src/index.js',
+    output: {
+      filename: 'bundle.js',
+      path: path.resolve(__dirname, 'dist')
+    }
+  }
+}
+```
 
 ### 4.3 代码分割
 
@@ -141,8 +160,10 @@ webpack支持预加载，通过/* webpackPrefetch: true */可以在核心代码�
 
 webpackpreload, 和核心代码一起加载。
 ### 4.6 浏览器缓存与contenthash, runtimeChunk: {name: 'runtime}
-
+浏览器存在缓存的时候会先使用缓存文件，因此，通过webpack打包的代码如果内容发生变化，而打包后的保存的名称不发生变化的情况下，浏览器并不会请求的最新的代码。因此，webpack提供contenthash的功能，每个文件会生成一个hash,当内容发生变化时候，hash会改变，反之则不会改变。
+/*TODO:*/
 runtimeChunk抽离出mainfest文件，
+
 ### 4.7 shimming
 垫片，页面注入第三方库或者导出一个全局变量：
 
